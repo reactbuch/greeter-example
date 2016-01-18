@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Greeter</title>
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="greeterMountPoint"></div>
+  </body>
+  <script type="text/babel">
+class Greeter extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+              greeting: ''
+          }
+        }
+
+        onGreetingChange(event) {
+          this.setState({
+            greeting: event.target.value
+          });
+        }
+
+        onGreetClicked() {
+          // ES6 Template-String.
+          // Backticks (`) statt Hochkomma (')
+          alert(`Hello, ${this.state.greeting}`);
+        }
+
+        render() {
+          return (
+            <div>
+              Greeting:
+              <input value={this.state.greeting}
+                     onChange={(e)=>this.onGreetingChange(e)}>
+              </input>
+
+              <button
+					onClick={()=>this.onGreetClicked()}>Greet
+              </button>
+            </div>
+          );
+        }
+      }
+
+    ReactDOM.render(
+	  <Greeter />,
+	  document.getElementById('greeterMountPoint')
+    );
+  </script>
+
+</html>
